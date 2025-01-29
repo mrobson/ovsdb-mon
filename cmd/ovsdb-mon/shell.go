@@ -146,6 +146,7 @@ func (s *OvsdbShell) Run(ovs client.Client, args ...string) {
 		}
 		s.indexes[tableName] = indexes
 	}
+	time.Sleep(time.Duration(1<<63 - 1))
 }
 
 func newOvsdbShell(auto bool, dbmodel *model.DBModel, tablesToMonitor []client.TableMonitor) *OvsdbShell {
