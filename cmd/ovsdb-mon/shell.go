@@ -51,7 +51,7 @@ type OvsdbShell struct {
 func (s *OvsdbShell) Monitor(monitor bool) {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
-	s.monitor = monitor
+	s.monitor = true
 }
 
 func (s *OvsdbShell) printEvent(event OvsdbEvent) {
@@ -146,7 +146,6 @@ func (s *OvsdbShell) Run(ovs client.Client, args ...string) {
 		}
 		s.indexes[tableName] = indexes
 	}
-	ovsdbShell.(*OvsdbShell).Monitor(true)
 }
 
 func newOvsdbShell(auto bool, dbmodel *model.DBModel, tablesToMonitor []client.TableMonitor) *OvsdbShell {
