@@ -52,7 +52,9 @@ func (s *OvsdbShell) Monitor(monitor bool) {
 }
 
 func (s *OvsdbShell) printEvent(event OvsdbEvent) {
+	dt := time.Now()
 	fmt.Printf("New \033[1m%s\033[0m event on table: \033[1m%s\033[0m\n", event.Event, event.Table)
+	fmt.Println(dt.Format(time.RFC3339Nano))
 	switch event.Event {
 	case updateEvent:
 		fmt.Println(colordiff(event.Old, event.New))
